@@ -1,99 +1,104 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=pass header.oldest-pass=0 smtp.remote-ip=185.203.200.13
-ARC-Seal: i=2; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=pass;
-	t=1795596494;
-	b=zz7IPITLXJBku8v1xuLjoKi19ed1/PRQn3jMbgZoX8mS/MjRI1WN3pqB+VsffWBO29eB
-	 3YV4jwn5tipEn/ocm3Qt3FeWk8szb2feMj4gPhpNEwu6SkkcXp7oiLK7XyceD5nwhF0mq
-	 VoZT1uqBXMyRK/StdDhUy1nc5aLtWOTQ31g1kJC4+uGdf6BRv/bCOY2zYH6yBxMO6pGUP
-	 uA2NPBYNBofagTmtgR4NSxCvNNvTXP4v4O8Rr0qlTnbRNQqfbm86YGsCmu2XV5uZh6pkO
-	 iSlsCipZYsmzwidIFU7d2lInEKJD2X5KdSRn2qvv9wAmuczyV0enjlVlOc8ZOwMt90Q==
-ARC-Message-Signature: i=2; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795596494;
-	h=DMARC-Filter:Received:DKIM-Signature:Message-ID:Subject:From:To:Cc:
-	 Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:
-	 User-Agent:MIME-Version;
-	bh=YkAdyXDhvxMbRBkp6QhLOEe1Q7AO6B3AXM55qEFp9lo=;
-	b=hhHY8SA9GPginFDZQBFKOO3Yuj0JSuKdhJk04VDaKtW68CRhHsBTIdcrbBZ+pmqe3utS
-	 KV24IMOgmRxR+/aWoFX0UXg/RErjHvcpOkvofVz7GGXOGkq07GosCV7wFaq/soJrMZ/pd
-	 ccyUy7+fmsdvdW6EKDlrnr/l3nescPYy3GYa858ncD4XjbIbnpzRAeKCduXpkUOpHPe+5
-	 AU7+7ztRM209UcQZ7GaVjN4xZRGh9+k0i0MsDB8QI/QZPCAFn+MQR/V4HnzfUSDXvbwJu
-	 JZekDDu3kQU7UHnoTeDDydnfXOe1qE/kTMDYrBzvEmhQIdxgFYs5l9zDpdfsMkFMZqA==
-ARC-Authentication-Results: i=2; smtp.subspace.kernel.org; 
-	dmarc=none header.from=pengutronix.de;
-	spf=pass smtp.mailfrom=pengutronix.de;
-	dkim=pass header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=VxswUdnZ;
-	arc=pass header.oldest-pass=0 smtp.remote-ip=185.203.200.13
-Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.128.52
+ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
+	t=1795607024;
+	b=Nc2HlrA4fnnEjYcRpQvzMve8BKD20UFPPZIpWHTanddguMUfQ8Qp0Ynv7dvUqZ9dwHRP
+	 ryvgiy6/sWvExhlUWIt65k5oItVSH6JKQTQAPW51J2Nl6Gmr8IGD0+Vz49P5D4PMonEpH
+	 w5ZInPP4f/LxKzrtRsdcQ0vnvlF1FqSvW2fKH4nTNfctTKx+760AreNhSH53SvG9rLXnm
+	 SdsgnkORyQMh7GlB5IKEMg3Hkl4b+pSad7fvGrrkuqt07IB8HScFKCq22HVGxYVPJgEyu
+	 +P50BAmAzIEpOfG7I+mlFhEhA5etpb1FCXXJG6CRG/PusByZueHfnV2BbKJ7MLE3trQ==
+ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795607024;
+	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
+	 Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To;
+	bh=orbQl2N4vlIOWiLrIf8SUWQ1uKxLJ8cjnJYad+kaD0M=;
+	b=u9ZpCYrL6biphIcGv9FyeNG3StTO9gXdXCyPC+oLMTtGx5DPCb4N/PZz//DKg6G8uf9F
+	 uzBdX1RflT5iLuLgXl5LSKa+WxpbNgJQ2/IkQzoBos3NN/bl32ln7NZ2RyzOAxUrpi4LD
+	 yEE/VOQgDytO04RIMaibOfcK4Kw+z0/b/LFbc8aAJOfA3cy6wgY6aCkTJmsm1QmC2xZ3q
+	 coKZxZ54YYpMfan3vGBNhl70aKln1WQT1Ed8REXuUDfhGyOYRFTzhSLIbvAVo+yUpOLEi
+	 1Z7GGt5CUM5bcXTROJEPw5bLKXAm2SGuhuMvbSYsz38bm3x6ABkuIIsprFYhXTI6yWQ==
+ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
+	dmarc=pass header.from=baylibre.com;
+	spf=pass smtp.mailfrom=baylibre.com;
+	dkim=pass header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=fggu0uJi;
+	arc=none smtp.remote-ip=209.85.128.52
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E03DB606A332
-	for <google-soc@lists.linux.dev>; Wed, 25 Nov 2026 08:48:12 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org E03DB606A332
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63FEF606A33C
+	for <google-soc@lists.linux.dev>; Wed, 25 Nov 2026 11:43:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 63FEF606A33C
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=VxswUdnZ
-Received: from [IPv6:2a0a:edc0:0:900:1d::4e] (lupine.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::4e])
-	(Authenticated sender: pza@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 07059205A40;
-	Wed, 25 Nov 2026 09:48:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795596485;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YkAdyXDhvxMbRBkp6QhLOEe1Q7AO6B3AXM55qEFp9lo=;
-	b=VxswUdnZ8zZxlG5K8v8LMwwD3+rEe0Ben6LtoW+UoWP0aSf4mODGbC1+uanTjtonl18p3W
-	whniGtoYwAF5KzvpUe2gZBJt3ZU44Vu39ddmIeJqI9Y4dIaHyVS+y31QGoDJI/Biuzdwsb
-	SDLuthBxcKO1JWAQTYa1ky4KtxZO/baqpcZBOy7ViitMUEN9SZaI08jVxuZ66Zr6knwB9/
-	ZR8f3+8TtaSpiWOzi/nIiUXRmkXbYnV0ZPJH/ciIa8QosV9ftqkNRe9oBg1acezhAx0umP
-	K9ABwbJMqnEylxGnPo/hb3UkHV4H8I0zSRsF2EsZudhvK5NJ7ZkXbIIANzoNZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795596485;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YkAdyXDhvxMbRBkp6QhLOEe1Q7AO6B3AXM55qEFp9lo=;
-	b=a4BbdNpK5Zw/lp7YDH8eLh8iOa15oE+eZ6QafE1egvprRUdf7/2cieX+gnOZSWxWtCoQKh
-	PPibIQa3XuBva4Wp3Fe6zoUt0lUnHKbrTK7TvPyyrsJzQY1Z4Eovu1afqtrwho5jf0k0JT
-	D54qs4MgJULawdk4HDj55BJJIGyZ3QmnIjThpzxKJJ2qPBTxNvQWCbXOtw22V2uq3E/Cpk
-	vFzFAW6230132pBQ4025UWOClshecdmx6DTJYuP1vggU8V/APbtdM7fc4hD9VVzU+kQNMI
-	9BOa1k3FcR3iuTEWonnYr5kzGkIChYAltbk62SWF6GE/nZkLsJY08OH3dimOyg==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=pza@pengutronix.de smtp.mailfrom=p.zabel@pengutronix.de
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795596485; a=rsa-sha256;
-	cv=none;
-	b=DoQnf0dJy5UTJ4fHT2nESiGG6WRMGq5wR6/d479i6cQIHS8voXrBl+HUyJfpRWJdiJuIJK
-	WJig4zqFayZpMmRIWSM9ygk7ZFuVV0tQlF+AxlWjUyQ418pit3CEltkHKzhMxNL28Pv3Y+
-	PRkur0UQg9WEKJiyckDFQdZBc0rKsYXwrE9yokweU6WZDtNV8UJvcd4R/bOTXHpqFxFCTh
-	rMDohYDNKo/LX69L1sbsSwmn7fh6lgRJ1zuK2/UksJvYE9qOUd3UZT1TKgC8JA4z466B0e
-	CEWzw8PwfhIGAaqCXCOFYkdQ4luWMNWA+Kv9AKz3S/njkkx25fNg/kGhC9Q+7Q==
-Message-ID: <f89e293688feb3f9bcdce0f1b6fed0ee424e5cd8.camel@pengutronix.de>
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=fggu0uJi
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4a35a60499eso44685205e9.0
+        for <google-soc@lists.linux.dev>; Wed, 25 Nov 2026 03:43:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1795607023; x=1796211823; darn=lists.linux.dev;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=orbQl2N4vlIOWiLrIf8SUWQ1uKxLJ8cjnJYad+kaD0M=;
+        b=fggu0uJiVxEX0JiGuzzu+zDn/cpp6y4NC0PLSmZZcRqeo+Nd70DBw0Z2s4rlXWAGzc
+         rRq1ivZMfC0Be4ovD4c5sPDg+Z0HRER/lpGhQ5OselT07bhQ2piuR7bM8Cji+sjP2BRo
+         u06iyHHeevJAIicB38gLiZ1UPa+jPUIIxBmMBp0iS6zWT+Zw1P8AjsnINpAHoVQKzf1K
+         JjLD+rKevUfVpcGDzcud3yCh0R7xOSry34/Mf8HP5PDmhIC/JsVj+pFgaltJhKg0j2hb
+         SC080jdmJTMjbTspt1+b8fmrFLvrSqMKwYcyWIxhsVolmEYDnqEOZWV9hmIVYsMePC6m
+         n/Gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795607023; x=1796211823;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=orbQl2N4vlIOWiLrIf8SUWQ1uKxLJ8cjnJYad+kaD0M=;
+        b=OG+VaavluI7d7E70+clMO3UU7/ixRNJb47+yCtHUPhe1QVjGvDuldzkWbh8V0+IdGX
+         MtE8t37tZcezyfGG0C8BrtG9PFmSZ+RCkDYygr8JlAzgvLq2/Z5q9hDrbH2ANeBf6NmI
+         tzMrKnZy7G/9BdNh43vZOBOkhZstCBLiwKoctHkzqZEjD9Cphiu5HKA9vmqeliapL5VA
+         emnJw9j4D6YQ08e6uodSKGJ2+Iyob2BXJfEmzUHfJFiNdus7n5rl46YqlnbpUVa7d4ZE
+         lX3CrBuDl46G3XVieSNmjygyz7E/A/oUEtitdeIiz+dBwF7plrFwKmHSEsY6JZw2S3FO
+         zjSw==
+X-Forwarded-Encrypted: i=1; AL+hErEisekl9xXxNuyiRwtWrV6Pbj1XP0RLhXzNPUanHzVx2MFZ1Hgdxrzg0v6mkIRJdWe65OOrkTptDr3u@lists.linux.dev
+X-Gm-Message-State: APuU4Z8cv65xUjTpFp15LC34/YA5a6mmQWk+uem7VBExgIqyv531a2cQ
+	7znG6uUePJGs2UcFOkp5vrggzEBuwHVclbKwRMQ3EXIh7OGNLnrUzB2DWiApTEPeOis=
+X-Gm-Gg: AZFdTZeP74yOUleYe1rD6NhjJzDGnRE/alEwViTza3zp4Tu+6XhsnRcKOQRP+uC+A4+
+	fn41DqNHyH2EHNypXc6fcSRzqe7MxoJ47LEoaJ+UztMdFbnpvrzSTzYTCf3PQbAcSUX5rxxmj7x
+	yawFediJukUPT9//EpewOyqgDMelC0iVg+Awa5SlOhtMS7y6Buh8EsAwQy1KvfE/sMS+PEj3YpS
+	onc3vvXyiiHnNptbgkkky3D9flu7QbAqRD0MF2B1WBjki7ILrzMXfWDupyrWEHIuKwEmhHSGt/E
+	UPfbnkCU2BsVUS1YfiWiSsWq7qT/xIHJEXmwNdcRwu5DXZ6vgceM18XFghRiA2ftfO+ckkUJsdN
+	XJA2bqXMxsNFrOYw2IHCuoi0luWZlwWqcWFrmVFUaH92aQSRn4UyYUMVUa5zZHS3e2qSMfGjhxx
+	RgN2VVZpeBuGZFZJYRP728aalghmHNAr8UgcUC+yvN/b6G/lM/hEYEKBEoue3RCG0le13bhuFmV
+	h2SBJm20ovWPAIsjN9pk9JXSuXQkaN2539yGG7Pew9ojmCz95uUjOFSTTFQMrz1ejL3xAcEVTHw
+	mdX8UH4lsxnt6RHQnlT8Cf2XR2fx6hxWY33vucsTPuS7Pa4hehHT7nVAAS30wIiJLy0YiDefNIa
+	US2XsBv0R9RlWpBIu
+X-Received: by 2002:a05:600c:4e0d:b0:4bb:69b2:d3b3 with SMTP id 5b1f17b1804b1-4bb8881eea5mr364570665e9.27.1795607022789;
+        Wed, 25 Nov 2026 03:43:42 -0800 (PST)
+Received: from localhost (p200300f65f19a9043ef7230869dfba63.dip0.t-ipconnect.de. [2003:f6:5f19:a904:3ef7:2308:69df:ba63])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4bb884865a2sm527753115e9.3.2026.11.25.03.43.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 03:43:41 -0800 (PST)
+Date: Wed, 25 Nov 2026 12:43:40 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Brian Norris <briannorris@chromium.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
+	Jerome Brunet <jbrunet+clk@baylibre.com>, Thomas Gleixner <tglx@kernel.org>, Ulf Hansson <ulfh@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Radu Rendec <radu@rendec.net>, 
+	Jakub =?utf-8?B?R8WCb3dhY2tp?= <jglow@google.com>, linux-clk@vger.kernel.org, 
+	Douglas Anderson <dianders@chromium.org>, devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Mariano Marciello <mmarciello@google.com>, google-soc@lists.linux.dev
 Subject: Re: [PATCH v2 5/9] reset: google: Add CPM reset driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Brian Norris <briannorris@chromium.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stephen Boyd
-	 <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet
-	 <jbrunet+clk@baylibre.com>, Thomas Gleixner <tglx@kernel.org>, Ulf Hansson
-	 <ulfh@kernel.org>, Peter Griffin <peter.griffin@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, =?ISO-8859-1?Q?Andr=E9?=
- Draszik <andre.draszik@linaro.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Radu Rendec <radu@rendec.net>, Jakub
- =?UTF-8?Q?G=C5=82owacki?=	 <jglow@google.com>, linux-clk@vger.kernel.org,
- Douglas Anderson	 <dianders@chromium.org>, devicetree@vger.kernel.org,
- linux-pm@vger.kernel.org,  Mariano Marciello <mmarciello@google.com>,
- google-soc@lists.linux.dev
-Date: Wed, 25 Nov 2026 09:48:04 +0100
-In-Reply-To: <20261124160343.v2.5.I0b1ad34a718a9b5f667d2481041970ea45989dd3@changeid>
+Message-ID: <awbJUwrBQw5TnowW@monoceros>
 References: <20261125000349.3385325-1-briannorris@chromium.org>
-	 <20261124160343.v2.5.I0b1ad34a718a9b5f667d2481041970ea45989dd3@changeid>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+ <20261124160343.v2.5.I0b1ad34a718a9b5f667d2481041970ea45989dd3@changeid>
+ <f89e293688feb3f9bcdce0f1b6fed0ee424e5cd8.camel@pengutronix.de>
 X-Mailing-List: google-soc@lists.linux.dev
 List-Id: <google-soc.lists.linux.dev>
 List-Post: <mailto:google-soc@lists.linux.dev>
@@ -103,251 +108,46 @@ List-Unsubscribe: <mailto:google-soc+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:google-soc+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="huwbq4lvetfh3uwf"
+Content-Disposition: inline
+In-Reply-To: <f89e293688feb3f9bcdce0f1b6fed0ee424e5cd8.camel@pengutronix.de>
 
-On Di, 2026-11-24 at 16:03 -0800, Brian Norris wrote:
-> Google Tensor SoCs (used on Pixel phones) manage many resources
-> (including resets) using a Central Power Manager (CPM) co-processor. We
-> communicate with CPM using mailboxes, abstracted in the
-> devm_cpm_get_handle(), etc., API.
+
+--huwbq4lvetfh3uwf
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 5/9] reset: google: Add CPM reset driver
+MIME-Version: 1.0
+
+On Wed, Nov 25, 2026 at 09:48:04AM +0100, Philipp Zabel wrote:
+> > +#include <linux/mod_devicetable.h>
 >=20
-> For posterity, I list a summary of changes made relative to the
-> downstream Pixel driver:
->=20
-> * Switch to auxiliary bus, as a child of a CPM device
->=20
-> * Use devm more heavily
->=20
-> * Avoid representing each reset as its own Device Tree node.
->=20
-> Signed-off-by: Brian Norris <briannorris@chromium.org>
-> ---
->=20
-> Changes in v2:
->  * Rename symbols from goog_cpm_rst_* to cpm_reset_*
->  * Moved shared protocol details to CPM driver
->  * Remove custom reset debugfs interface and .remove callback.
->  * Remove per-SoC table; we only need naive translation of firmware IDs
->=20
->  drivers/reset/Kconfig            |   1 +
->  drivers/reset/Makefile           |   1 +
->  drivers/reset/google/Kconfig     |  11 +++
->  drivers/reset/google/Makefile    |   2 +
->  drivers/reset/google/reset-cpm.c | 154 +++++++++++++++++++++++++++++++
->  5 files changed, 169 insertions(+)
->  create mode 100644 drivers/reset/google/Kconfig
->  create mode 100644 drivers/reset/google/Makefile
->  create mode 100644 drivers/reset/google/reset-cpm.c
->=20
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 673bca1e594e..64c12b479b2c 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -475,6 +475,7 @@ config RESET_ZYNQMP
->  	  This enables the reset controller driver for Xilinx ZynqMP SoCs.
-> =20
->  source "drivers/reset/amlogic/Kconfig"
-> +source "drivers/reset/google/Kconfig"
->  source "drivers/reset/hisilicon/Kconfig"
->  source "drivers/reset/realtek/Kconfig"
->  source "drivers/reset/spacemit/Kconfig"
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index 2fe527a7be8e..a151fe63905e 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -1,6 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0
->  obj-y +=3D core.o
->  obj-y +=3D amlogic/
-> +obj-y +=3D google/
->  obj-y +=3D hisilicon/
->  obj-y +=3D realtek/
->  obj-y +=3D spacemit/
-> diff --git a/drivers/reset/google/Kconfig b/drivers/reset/google/Kconfig
-> new file mode 100644
-> index 000000000000..38431b4f9001
-> --- /dev/null
-> +++ b/drivers/reset/google/Kconfig
-> @@ -0,0 +1,11 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config RESET_CPM
-> +	tristate "Google CPM Reset Controller"
-> +	depends on ARCH_GOOGLE || COMPILE_TEST
-> +	depends on GOOGLE_CPM_MBA
-> +	help
-> +	  Driver support for reset controllers found on Google Tensor SoCs,
-> +	  operating over the CPM mailbox interface. This allows peripheral
-> +	  drivers to assert and deassert resets on LPCM hardware blocks.
-> +
-> +	  If unsure, say N.
-> diff --git a/drivers/reset/google/Makefile b/drivers/reset/google/Makefil=
-e
-> new file mode 100644
-> index 000000000000..437c19459464
-> --- /dev/null
-> +++ b/drivers/reset/google/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_RESET_CPM) +=3D reset-cpm.o
-> diff --git a/drivers/reset/google/reset-cpm.c b/drivers/reset/google/rese=
-t-cpm.c
-> new file mode 100644
-> index 000000000000..ef0863f25cac
-> --- /dev/null
-> +++ b/drivers/reset/google/reset-cpm.c
-> @@ -0,0 +1,154 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Device driver to control Google SoC LPCM resets via CPM.
-> + * Copyright 2023-2026 Google LLC
-> + */
-> +
-> +#include <linux/auxiliary_bus.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/container_of.h>
-> +#include <linux/dev_printk.h>
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/errno.h>
-> +#include <linux/gfp_types.h>
-> +#include <linux/limits.h>
-> +#include <linux/mod_devicetable.h>
+> Please include the specific <linux/device-id/*.h> that is needed
+> instead of all of <linux/mod_devicetable.h>.
 
-Please include the specific <linux/device-id/*.h> that is needed
-instead of all of <linux/mod_devicetable.h>.
+Or better still, rely on the bus headers to provide the needed
+*_device_id structures. (That is <linux/platform_device.h> provides
+of_device_id (for patch #2) and <linux/auxiliary_bus.h> provides
+auxiliary_device_id and of_device_id (for patches #3 - #6)).
 
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/reset-controller.h>
-> +#include <linux/types.h>
-> +#include <soc/google/google-cpm-mba.h>
-> +
-> +#define ASSERT_OP_ID			0
-> +#define DEASSERT_OP_ID			1
-> +
-> +#define CPM_RST_LPCM_ID_MASK		GENMASK(31, 16)
-> +#define CPM_RST_ID_MASK			GENMASK(15, 0)
+Best regards
+Uwe
 
-Why are these fields 16 bits wide when one line below it says:
+--huwbq4lvetfh3uwf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +/* Object fields are 8 bits */
-> +#define CPM_RST_ID_MAX			U8_MAX
-> +
-> +static inline unsigned long to_rstc_idx(u32 lpcm_id, u32 rst_id)
-> +{
-> +	return FIELD_PREP(CPM_RST_LPCM_ID_MASK, lpcm_id) |
-> +	       FIELD_PREP(CPM_RST_ID_MASK, rst_id);
-> +}
-> +
-> +static inline u32 lpcm_from_idx(unsigned long idx)
-> +{
-> +	return FIELD_GET(CPM_RST_LPCM_ID_MASK, idx);
-> +}
-> +
-> +static inline u32 rst_from_idx(unsigned long idx)
-> +{
-> +	return FIELD_GET(CPM_RST_ID_MASK, idx);
-> +}
-> +
-> +struct cpm_reset_provider {
-> +	struct reset_controller_dev rcdev;
-> +	struct cpm_handle *cpm;
-> +};
-> +
-> +static inline struct cpm_reset_provider *to_provider(struct reset_contro=
-ller_dev *rcdev)
-> +{
-> +	return container_of(rcdev, struct cpm_reset_provider, rcdev);
-> +}
-> +
-> +static int cpm_reset_send_lpcm(struct reset_controller_dev *rcdev,
-> +			       unsigned long idx, u8 opcode)
-> +{
-> +	struct cpm_reset_provider *provider =3D to_provider(rcdev);
-> +	const struct cpm_lpcm_message msg =3D {
-> +		.cmd =3D LPCM_CMD_SET_RST,
-> +		.opcode =3D opcode,
-> +		.lpcm_id =3D lpcm_from_idx(idx),
-> +		.obj_id =3D rst_from_idx(idx),
-> +	};
-> +
-> +	return cpm_send_lpcm_message(provider->cpm, &msg);
-> +}
-> +
-> +static int cpm_reset_assert(struct reset_controller_dev *rcdev,
-> +			    unsigned long idx)
-> +{
-> +	return cpm_reset_send_lpcm(rcdev, idx, ASSERT_OP_ID);
-> +}
-> +
-> +static int cpm_reset_deassert(struct reset_controller_dev *rcdev,
-> +			      unsigned long idx)
-> +{
-> +	return cpm_reset_send_lpcm(rcdev, idx, DEASSERT_OP_ID);
-> +}
-> +
-> +static const struct reset_control_ops cpm_reset_ops =3D {
-> +	.assert =3D cpm_reset_assert,
-> +	.deassert =3D cpm_reset_deassert,
-> +};
-> +
-> +static int cpm_reset_of_xlate(struct reset_controller_dev *rcdev,
-> +			      const struct of_phandle_args *reset_spec)
-> +{
-> +	u32 lpcm_id, rst_id;
-> +
-> +	if (reset_spec->args_count !=3D 2)
-> +		return -EINVAL;
-> +
-> +	lpcm_id =3D reset_spec->args[0];
-> +	rst_id =3D reset_spec->args[1];
-> +
-> +	if (lpcm_id > CPM_RST_ID_MAX)
+-----BEGIN PGP SIGNATURE-----
 
-This looks a bit weird.
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmsGyeoACgkQj4D7WH0S
+/k7XEggAlcj2TrM3p6EXOwI/xsUxWXF252CxwyEWI8ZmPEpI6bAu6Q2vo1jWzU80
+RgNMuXczOoZoJ6+hJdkMeoqHuhp2FPvl718ZM9+ZXmIzmzCoBNWIn7I/StnNApVp
+CRTaJoMc3RQ58/iAEYs4Bd6kNCpJoojOnWxMnprqZsXFWDmYDOaKauDIqnRyeGSd
+Y/roBTL3HpvnWDZxm7b51fG8984ltXAM06Db+ZRdnLxyged3B5xdXwcFGLlqeoKG
+ti6pQXYhQnxuxJFTg8v+DdOAKp8wPe6CkjTN92KfVvWDgxJYHe7zwZ1V0TrgDqMQ
+p3mJ8Bmk3uxwBcQfM5lzAgDW6N8h4Q==
+=fqd8
+-----END PGP SIGNATURE-----
 
-Maybe add a CPM_LPCM_ID_MAX, directly use U8_MAX here, or rename the
-constant to not include RST_ID?
-
-> +		return -EINVAL;
-> +	if (rst_id > CPM_RST_ID_MAX)
-> +		return -EINVAL;
-> +
-> +	return to_rstc_idx(lpcm_id, rst_id);
-> +}
-> +
-> +static int cpm_reset_probe(struct auxiliary_device *auxdev,
-> +			   const struct auxiliary_device_id *id)
-> +{
-> +	struct device *dev =3D &auxdev->dev;
-> +	struct cpm_reset_provider *provider;
-> +	int ret;
-> +
-> +	provider =3D devm_kzalloc(dev, sizeof(*provider), GFP_KERNEL);
-
-devm_kzalloc_obj()
-
-> +	if (!provider)
-> +		return -ENOMEM;
-> +
-> +	provider->cpm =3D devm_cpm_get_handle(dev);
-> +	if (IS_ERR(provider->cpm))
-> +		return dev_err_probe(dev, PTR_ERR(provider->cpm),
-> +				     "Failed to get CPM handle\n");
-> +
-> +	provider->rcdev.dev =3D dev;
-> +	provider->rcdev.owner =3D THIS_MODULE;
-> +	provider->rcdev.of_node =3D dev->of_node;
-> +	provider->rcdev.ops =3D &cpm_reset_ops;
-> +	provider->rcdev.of_reset_n_cells =3D 2;
-> +	provider->rcdev.of_xlate =3D cpm_reset_of_xlate;
-> +
-> +	ret =3D devm_reset_controller_register(dev, &provider->rcdev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to register reset controller: %d\n", ret);
-
-dev_err_probe()
-
-
-regards
-Philipp
+--huwbq4lvetfh3uwf--
