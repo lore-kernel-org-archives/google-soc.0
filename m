@@ -1,104 +1,101 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.128.46
-ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795648350;
-	b=QrzVbLBaxdd1AVTDnjvie+lvkm7PDdZT397MAE41TYX532nfZUi6sX+j69hQt/sK7YmI
-	 guOtUdCn/Z+gueTY4WvQ2ajs2n4hKz+4rNrzOkAVkiwrqp09vO2HTUIfgKc0L6RKO99if
-	 4nZxey+HJZ3DhyyBjfy47hrYq9Vy57zrKLSUe46u2qeEUPxTaYUvXW16fDu+BmLRHXd8M
-	 nlSOBCsHz6UHTsWgU0SMM3zXHXgUGUiZLD30zxwo2ALLQB7bngQLaLDxfoqHBHH/1Kf9T
-	 36qNTo8abyhX2j241EmZWS+zZp28w5avrtNyEjswMwfFXmcMq+RR43s+FkUg1YW6dcg==
-ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795648350;
-	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
-	 Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To;
-	bh=r+DhYJ93tfesWORfibIV1d9I4czZkNjxK3eLYv410RY=;
-	b=GC8fq8/6wAeUuHDxVNNw+UPGcTDsjcV0YTHifV28WbJ9NcCmEnpuOhudNORtNtbb+jTK
-	 FImBHjDnAX5RPfdawPNswoDwx6qZQop/nP0so+fKkgn6Auxi8ltA6PpPG20AuqL1Qn5n6
-	 ouMdufvx5w1dju1EMElwQLvuTtcZymBr0Kyv9zeXmcX2baRlnbsI7cnjaCAJ91CYRSzGn
-	 Q5SPAQJpPbd8gxq+h39JQoYAMeAje6WiO9tMREPudMxW4G4fkQm1vFLqVEnpVqMCJ4QPk
-	 HueMnl6oQKCiB1hiIQSf2LDOrN2hEQ9PypdO0mtzr7ToChH5rsIEdZJjMy63Q0ZIerw==
-ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=baylibre.com;
-	spf=pass smtp.mailfrom=baylibre.com;
-	dkim=pass header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=WJdRbc+6;
-	arc=none smtp.remote-ip=209.85.128.46
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass header.oldest-pass=0 smtp.remote-ip=185.203.200.13
+ARC-Seal: i=2; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=pass;
+	t=1795687231;
+	b=rqg+sY04bWe6y7AgmEdD7o7dM1R0yKuJp6MSJ+e42/WxoqnLNQ+uakLmluq1j70c+V3G
+	 wpu0xOyGTQaqpMglsxKKB2VkakAni7HXlPu1OdK4xge4pULKvue8O6owSBX3aZrSZAJVA
+	 ilGsaFWNky/RCJ2933ivgDQD2i8OnbyjPu9lAo2Nu9bHi8IuLbRsXiC5aJX8OAZ0LyCuJ
+	 1o87Ejr1KSg++f2bMJ7yC3MQcUm8uM5Ftji9C6385l02AK6kRXHQGceNWEIoePXMcTKjS
+	 YtndTyIuJfDjaZsZPONxUrtcodkeBqZe/tetgeJgvpUJfrQjhVRh+qPdt1E15Lj4GcQ==
+ARC-Message-Signature: i=2; d=subspace.kernel.org; s=arc20261015;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795687231;
+	h=DMARC-Filter:Received:DKIM-Signature:Message-ID:Subject:From:To:Cc:
+	 Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:
+	 User-Agent:MIME-Version;
+	bh=q2mecaHdf9fQt6uFtB3JOo6SnHGQnL+J6Uhto1mX8V4=;
+	b=dUBEjNuE+TLY4qB6RTayAoALjBlbOV2Ke0GRTyPCwYcIIuEtXH63uPRSBcBJ0OcRkZ0h
+	 SUR8uW9nqT4BNsFHB2uULT1l7nwCos4SFTDyMvBKEOeqsLrH6x7BZdf8Nmvy0FnHyFPLW
+	 KC5lCgMVOjCK6IAsKBcL0AWtAHRST3l/nFqIOd0MlENVlh/T6GbS6ksIihj2P+IakZ4++
+	 PNzSXQQJXtgp+fhXbENTwpueLCIvc/DuvZuwe/VFjcE5BamS3XT5EB0B4Y5CoDdBkGB2q
+	 GoCTG4Cpj+vQaYkRNcnVehbENHwWptvZblG66Dh2ODqmmSNXZpoAngf4c5GfbrZ/eQQ==
+ARC-Authentication-Results: i=2; smtp.subspace.kernel.org; 
+	dmarc=none header.from=pengutronix.de;
+	spf=pass smtp.mailfrom=pengutronix.de;
+	dkim=pass header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=E2nkLJu8;
+	arc=pass header.oldest-pass=0 smtp.remote-ip=185.203.200.13
+Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37D33606A684
-	for <google-soc@lists.linux.dev>; Wed, 25 Nov 2026 23:12:29 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 37D33606A684
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7113606A31C
+	for <google-soc@lists.linux.dev>; Thu, 26 Nov 2026 10:00:29 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org A7113606A31C
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=WJdRbc+6
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4bb6886d30aso60659935e9.3
-        for <google-soc@lists.linux.dev>; Wed, 25 Nov 2026 15:12:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795648347; x=1796253147; darn=lists.linux.dev;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=r+DhYJ93tfesWORfibIV1d9I4czZkNjxK3eLYv410RY=;
-        b=WJdRbc+6EbwfrVj+AYrPmT812RVagBg0RmSAz9YBREsj0FIAZ5xkeEJVnMvm9lqIRl
-         j+CPj01npWIChyjx8WSwcDuRDka9byLojDii9MOoqOkgxdC2eMQCEgnyUQICU+7oilIX
-         hSeyHEP5AeJQ85G+iJqneXdztY93xxCDGZ2YIciyDQEDEIufxlJAIqWYwViiuNeHr3/l
-         UvgLQJVjuqmyxQic/J2hMW5Zk2m+22fgliyHRL4ew0O7vpGW7yi7U2c6O5wD4kwtl0o2
-         3Sg6Ob6PiS5Qxy9eqNIOGpjd+5cIRUR/MGhsoDN3rZxwkASOIs2MT/eIh8a93A8QyTAo
-         QIug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795648347; x=1796253147;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=r+DhYJ93tfesWORfibIV1d9I4czZkNjxK3eLYv410RY=;
-        b=df4oZ1PlvOuTecpCZaMxKDJS/R5e+k4Jxhiu19fYVxBM4sAmkDE3lW896sU/IpD7C1
-         OWD6V0PNyUH5yz+C3NCnSfQ3jBh8Y/JMhyf5fjYiodG0nBVPlwUrhLPNCfuWZ1uTQ199
-         N8tUfG5WFMT/5MUEOkOZpPeRvZMXtkTkTEj/c97WtSP7iZp2UASmtWs/xReAVRVrT5t/
-         a+htUAR1qh11D1M5H7fVDHdE533+UqQC/7lJSiEnDIJDipYIqVOJck4sjt86UY4+431v
-         Eliry+M4Uv40PqBW2oyTzSGGdGmlUCH3PKHgyDHKQAjEge3rsWjHZh5vPhh0jEJ1BLpQ
-         +JQw==
-X-Forwarded-Encrypted: i=1; AL+hErHkCx2VX0Sli0dS8cjBg8jZQNZQDT91KSNjOvf9s04DsQqTvTs2+Atr3lPMyVEdibE9CjvPSTz8fVLs@lists.linux.dev
-X-Gm-Message-State: APuU4Z8YAuJgamYIQgXxSu+kkOnjZam6vcj43v2tVK+aFLPadVOkgFnt
-	KrEoBIwTnlbV+wY4STx1TseixM9g72H4zfKJlKQkY3qVg8VTvoeYL0Lf4lj7tjfU2H8=
-X-Gm-Gg: AZFdTZeMjwOgM1KNG4fB0pDO6qDDt30EN/By2yb0ybDGbB+pcNVDZ10vY1t6ti/MFbE
-	6ZloLzShr/LsGvuGRpT4Ylt9EjWK48kMgFXZMCSgwpRq9hEWy3ACUdb1lcO9vcbin92Gr6UTBkQ
-	v7Mvp3pws8HZygl8L7OgAgJnmJYSQzty1n6OD7UKjVUTuZPDzqPL9ExPX65Dm0DQ1nIS1Ze3kKi
-	ZZ04bnI08T12D0mdok+oNX+84+oXEPztFWyikCAIYr1BRqFI33+ueEoNCLHe/KHAN4QA0CQadwb
-	LdUy+20FkIXbJV26CjF1uxnWm2KfD6AJ/VwGT/4+HqTvJzdKwb7tuyHB8VmH9qGZb8/fcyj3xLf
-	WIkdPK1pWbZoc4ebWuHuwtuAfEzQo67f7hQnB6YDVt3MvccPJgTVidG1DjjcRTTIz5YvFwuAGWW
-	3/xrVY9L3NZDHVTplgjLVlJnFwXFoEBkcD7groy6Lwl5mn+wrprvkaEK1fBekF2cN9aXlQIJ+PU
-	lU05jkGmrGJK32C+mE84A/N390o8Uw9NqJXqdVO+5eH8MdPTs0mZ9kxUiExJGbmDIejCfRsMgz/
-	PgEHacTCi2HWH4R80lwCP8knXHw05viaLas=
-X-Received: by 2002:a05:600c:4f84:b0:4bb:8701:a2df with SMTP id 5b1f17b1804b1-4bb88809950mr395769935e9.17.1795648347566;
-        Wed, 25 Nov 2026 15:12:27 -0800 (PST)
-Received: from localhost ([2a02:8071:6e30:8500:1d24:d58d:2b65:c291])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4bb8533579csm480759855e9.2.2026.11.25.15.12.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 15:12:26 -0800 (PST)
-Date: Thu, 26 Nov 2026 00:12:25 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Brian Norris <briannorris@chromium.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
-	Jerome Brunet <jbrunet+clk@baylibre.com>, Thomas Gleixner <tglx@kernel.org>, Ulf Hansson <ulfh@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Radu Rendec <radu@rendec.net>, 
-	Jakub =?utf-8?B?R8WCb3dhY2tp?= <jglow@google.com>, linux-clk@vger.kernel.org, 
-	Douglas Anderson <dianders@chromium.org>, devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Mariano Marciello <mmarciello@google.com>, google-soc@lists.linux.dev
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=E2nkLJu8
+Received: from [IPv6:2a0a:edc0:0:900:1d::4e] (lupine.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::4e])
+	(Authenticated sender: pza@pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 3062F200509;
+	Thu, 26 Nov 2026 11:00:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795687227;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=q2mecaHdf9fQt6uFtB3JOo6SnHGQnL+J6Uhto1mX8V4=;
+	b=E2nkLJu8uEfaPkMO+WNZl7KByQ7wd17jFeir36TfrYvQxbfFKC7mn2SdTAalXdGoaa2ZmX
+	4JdaOx+npG715reCsbR4dqlTOdAhV8XxUMxPAVhifDuL7NIW999vC1SXMStE2T4J1Qyuue
+	wH7HPosPfk522LVvVeI0DhpI8n1UkwymWyW5FjEOB3ne4Tr3hfd4c4JyIhyW7mrNfZ6Yyr
+	YEMwxxw+xpvmpjaLvvWb3e13r5hSYOVKAgLvp23gvm7kpUNJtj7UTG1HeEDxMugxEkKLmA
+	DzPgwizW2yWZHh4Cjdyyk6ZugjJLAFSmbay1dQGQJVh6ynP4voaDmCXb9xt25w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795687227;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=q2mecaHdf9fQt6uFtB3JOo6SnHGQnL+J6Uhto1mX8V4=;
+	b=FE0vI8qUEgOEZFKbIBM0XdrhW/hSbyHWJ79sdSHrsOnIVg9JEElEXBugFVTnApGxcIFa7G
+	Wue4egM96zYl+LHmjwCZWd8cH1JvD4fGUp2BNUcsKW7KeqGlECqkUe3YOKg0dBdRHcqH8B
+	xehcEpC+OMFHPxEOGXEywsiSKKbqf014iK9FsG18lWx0/XBf9LNJpEe4n6Uzrd10g0vBo1
+	QzCfZpwxO9juycrNaJDMumwinDvIQBiKp8shIONQe8lRT7fgnDC1xY9uGvGRflNo35fwcR
+	CrNeELb7j1xccXRj/53szIGDZ7MjEDL49PqzujbKBUcC9uQ1Ec4cl3pg/JbMYA==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=pza@pengutronix.de smtp.mailfrom=p.zabel@pengutronix.de
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795687227; a=rsa-sha256;
+	cv=none;
+	b=VNKAcbU6083evAYtgG/4DbGEJvDmbeaURvQyZkqMuPvl3kT6NFUlGfwrj14ied8bMDmGsK
+	1nd8XCpCfywUpvxt6Au1HrWlkK9V+ujelfUgjVJme3TKo2WX51GbHeQUN2f6+ZssaL+Cvw
+	jVFVZIrrzbRYtsqnHcmYFbKCYUT1VQzHDacWYk7TY6rBCSZNLAET3rpVHCvqCsr7acPb5o
+	/5pi015kNzKdfOLW6rpZi2T620SePC75+kmFWGpWl8si/nqfvUhDKd+qwgUhBaxgXG8++s
+	iNrMfHtbfyiBxB3FcQXdd0c0imCObGH4V4h8A/FeZdcfswD8UykmGrHKvBJTFA==
+Message-ID: <66d5a395e692387ff39669b60f803cde8f97affe.camel@pengutronix.de>
 Subject: Re: [PATCH v2 5/9] reset: google: Add CPM reset driver
-Message-ID: <awdp3W7LWfQ3ZrIy@monoceros>
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Brian Norris <briannorris@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Brian
+ Masney <bmasney+clk@redhat.com>,  Jerome Brunet <jbrunet+clk@baylibre.com>,
+ Thomas Gleixner <tglx@kernel.org>, Ulf Hansson <ulfh@kernel.org>,  Peter
+ Griffin <peter.griffin@linaro.org>, Tudor Ambarus
+ <tudor.ambarus@linaro.org>,  =?ISO-8859-1?Q?Andr=E9?= Draszik	
+ <andre.draszik@linaro.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Radu Rendec <radu@rendec.net>, Jakub
+ =?UTF-8?Q?G=C5=82owacki?=	 <jglow@google.com>, linux-clk@vger.kernel.org,
+ Douglas Anderson	 <dianders@chromium.org>, devicetree@vger.kernel.org,
+ linux-pm@vger.kernel.org,  Mariano Marciello <mmarciello@google.com>,
+ google-soc@lists.linux.dev
+Date: Thu, 26 Nov 2026 11:00:27 +0100
+In-Reply-To: <awcz1aP6xcL6G2t4@google.com>
 References: <20261125000349.3385325-1-briannorris@chromium.org>
- <20261124160343.v2.5.I0b1ad34a718a9b5f667d2481041970ea45989dd3@changeid>
- <f89e293688feb3f9bcdce0f1b6fed0ee424e5cd8.camel@pengutronix.de>
- <awbJUwrBQw5TnowW@monoceros>
- <awc0sBl6q6A2Reaq@google.com>
+	 <20261124160343.v2.5.I0b1ad34a718a9b5f667d2481041970ea45989dd3@changeid>
+	 <f89e293688feb3f9bcdce0f1b6fed0ee424e5cd8.camel@pengutronix.de>
+	 <awcz1aP6xcL6G2t4@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 X-Mailing-List: google-soc@lists.linux.dev
 List-Id: <google-soc.lists.linux.dev>
 List-Post: <mailto:google-soc@lists.linux.dev>
@@ -108,72 +105,69 @@ List-Unsubscribe: <mailto:google-soc+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:google-soc+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="khx4cneo7r6erf2z"
-Content-Disposition: inline
-In-Reply-To: <awc0sBl6q6A2Reaq@google.com>
 
-
---khx4cneo7r6erf2z
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 5/9] reset: google: Add CPM reset driver
-MIME-Version: 1.0
-
-On Wed, Nov 25, 2026 at 11:19:12AM -0800, Brian Norris wrote:
-> On Wed, Nov 25, 2026 at 12:43:40PM +0100, Uwe Kleine-K=F6nig wrote:
-> > On Wed, Nov 25, 2026 at 09:48:04AM +0100, Philipp Zabel wrote:
-> > > > +#include <linux/mod_devicetable.h>
+On Mi, 2026-11-25 at 11:15 -0800, Brian Norris wrote:
+> On Wed, Nov 25, 2026 at 09:48:04AM +0100, Philipp Zabel wrote:
+> > On Di, 2026-11-24 at 16:03 -0800, Brian Norris wrote:
+> > > Google Tensor SoCs (used on Pixel phones) manage many resources
+> > > (including resets) using a Central Power Manager (CPM) co-processor. =
+We
+> > > communicate with CPM using mailboxes, abstracted in the
+> > > devm_cpm_get_handle(), etc., API.
 > > >=20
-> > > Please include the specific <linux/device-id/*.h> that is needed
-> > > instead of all of <linux/mod_devicetable.h>.
+> > > For posterity, I list a summary of changes made relative to the
+> > > downstream Pixel driver:
+> > >=20
+> > > * Switch to auxiliary bus, as a child of a CPM device
+> > >=20
+> > > * Use devm more heavily
+> > >=20
+> > > * Avoid representing each reset as its own Device Tree node.
+> > >=20
+> > > Signed-off-by: Brian Norris <briannorris@chromium.org>
+> > > ---
+> > >=20
+> > > Changes in v2:
+> > >  * Rename symbols from goog_cpm_rst_* to cpm_reset_*
+> > >  * Moved shared protocol details to CPM driver
+> > >  * Remove custom reset debugfs interface and .remove callback.
+> > >  * Remove per-SoC table; we only need naive translation of firmware I=
+Ds
+> > >=20
+> > >  drivers/reset/Kconfig            |   1 +
+> > >  drivers/reset/Makefile           |   1 +
+> > >  drivers/reset/google/Kconfig     |  11 +++
+> > >  drivers/reset/google/Makefile    |   2 +
+> > >  drivers/reset/google/reset-cpm.c | 154 +++++++++++++++++++++++++++++=
+++
+> > >  5 files changed, 169 insertions(+)
+> > >  create mode 100644 drivers/reset/google/Kconfig
+> > >  create mode 100644 drivers/reset/google/Makefile
+> > >  create mode 100644 drivers/reset/google/reset-cpm.c
+> > >=20
+[...]
+> > > diff --git a/drivers/reset/google/reset-cpm.c b/drivers/reset/google/=
+reset-cpm.c
+> > > new file mode 100644
+> > > index 000000000000..ef0863f25cac
+> > > --- /dev/null
+> > > +++ b/drivers/reset/google/reset-cpm.c
+> > > @@ -0,0 +1,154 @@
+[...]
+> > > +	if (lpcm_id > CPM_RST_ID_MAX)
 > >=20
-> > Or better still, rely on the bus headers to provide the needed
-> > *_device_id structures. (That is <linux/platform_device.h> provides
-> > of_device_id (for patch #2)
+> > This looks a bit weird.
+> >=20
+> > Maybe add a CPM_LPCM_ID_MAX, directly use U8_MAX here, or rename the
+> > constant to not include RST_ID?
 >=20
-> Only very indirectly:
+> How about these (with the masks made 8-bit as they should be)?
 >=20
->   <linux/platform_device.h>
->   -> <linux/device.h>
->     -> <linux/device/driver.h>
->       -> <linux/device-id/of.h>
->=20
-> > and <linux/auxiliary_bus.h> provides
-> > auxiliary_device_id and of_device_id (for patches #3 - #6)).
->=20
-> Also quite indirectly.
+>   FIELD_MAX(CPM_RST_LPCM_ID_MASK))
+>   FIELD_MAX(CPM_RST_ID_MASK))
 
-Yes, I already thought about making this more explicit. But this isn't
-my primary objective currently. It's safe to assume that the provider of
-struct platform_driver also provides of_device_id. While a forward
-declaration would be enough technically to define struct
-platform_driver, that is not sensible because most users of
-platform_driver also need the definition of of_device_id and there are
-too many drivers relying on that already.
+Even better. I just got tripped up by the comparison between lpcm_id
+and what looked like the limit for rst_id.
 
-Well, but having said that, the thing that I consider important is that
-no new users of <linux/mod_devicetable.h> pop up. If you want to go for
-#including <linux/device-id/of.h> that's fine for me, too. (And similar
-for the other busses and *_device_id structs).
-
-Best regards
-Uwe
-
---khx4cneo7r6erf2z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmsHa1YACgkQj4D7WH0S
-/k62MQf+OKGka4mPSwopQ0+gI2VWXrdB3QhqgUL8ffjUMb7jkBi86oA6YfcjNC/D
-8aZRTb/LZNPgl7ygdsKPEfFKlbKH1yCA+9gfN/aS+x6ykkZUKdn1Ha8m8ImuN87s
-ooG++TXgzYfljHdoCVeukZsRth0gqt+QTBWLDPPUCDzC543cmPPqIWNi0LXdgwuf
-OFve6MraHVKSLw0TVigzWyx0MYat5C1Y5gWVcsnmShhh1D18CrPfvFcu4dFot6Zj
-IsEZRk30Wuu42YCnSD1t+UeGc+VDD5hxC1JhUdvN7txOJr1NHKdNT11aByux9mPD
-ityFQTt/321OJci6adJV7NMgTYNlPg==
-=MU9a
------END PGP SIGNATURE-----
-
---khx4cneo7r6erf2z--
+regards
+Philipp
